@@ -8,6 +8,6 @@ export class PhotoService {
   constructor (private http: HttpClient) {}
 
   listFromUser(userName: string): Observable<Photo[]> {
-    return this.http.get<Photo[]>('http://localhost:3000/flavio/photos')
+    return this.http.get<Photo[]>(`http://localhost:3000/${userName}/photos`)
   }
 }
