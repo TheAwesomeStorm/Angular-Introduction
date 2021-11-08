@@ -1,2 +1,5 @@
-<ap-photo url="https://www.freecodecamp.org/news/content/images/2019/07/panel-1-1.png" description="0 == '0' meme"></ap-photo>
-<ap-photo url="https://www.freecodecamp.org/news/content/images/2019/07/best-js-meme-to-date-2.png" description="JavaScript meme"></ap-photo>
+<ap-photo
+  *ngFor="let photo of photos"
+  [url]="photo.url"
+  [description]="photo.description">
+</ap-photo>
