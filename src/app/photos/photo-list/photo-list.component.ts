@@ -10,6 +10,7 @@ import { PhotoService } from '../photo/photo.service'
 })
 export class PhotoListComponent implements OnInit {
   photos: Photo[] = []
+  filter: string = ''
   constructor (
     private photoService: PhotoService,
     private activatedRoute: ActivatedRoute
@@ -17,5 +18,11 @@ export class PhotoListComponent implements OnInit {
   ngOnInit(): void {
     const userName = this.activatedRoute.snapshot.params['userName']
     this.photoService.listFromUser(userName).subscribe(photos => this.photos = photos)
+  }
+  onKeyUp(target: any) {
+    if(target instanceof EventTarget) {
+      const element = target as HTMLInputElement
+      this.filter = element.value
+    }
   }
 }
