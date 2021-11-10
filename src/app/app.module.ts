@@ -9,8 +9,7 @@ import { CardComponent } from './shared/components/card/card.component'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CardComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
