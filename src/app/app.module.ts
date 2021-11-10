@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { PhotosModule } from './photos/photos.module'
 import { AppRoutingModule } from './app.routing.module'
-import { ErrorsModule } from './errors/errors.module'
+import { ErrorsModule } from './errors/errors.module';
+import { CardComponent } from './shared/components/card/card.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
