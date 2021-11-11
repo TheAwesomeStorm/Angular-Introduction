@@ -41,10 +41,12 @@ export class SignInComponent implements OnInit {
     this.authentication
       .authenticate(userName, password)
       .subscribe(
-        () => console.log('autenticado'),
-        error => {
-          console.log(error)
-          this.loginForm.reset()
+        {
+          next: () => console.log('autenticado'),
+          error: (error) => {
+            console.log(error)
+            this.loginForm.reset()
+          }
         }
       )
   }
