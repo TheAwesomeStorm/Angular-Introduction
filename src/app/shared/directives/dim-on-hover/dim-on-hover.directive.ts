@@ -1,20 +1,25 @@
-import { Directive, ElementRef, HostListener } from '@angular/core'
+import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core'
 
 @Directive({
   selector: '[appDimOnHover]'
 })
 export class DimOnHoverDirective {
 
-  constructor(private element: ElementRef) { }
+  @Input() brightness: string = '70%'
+
+  constructor(
+    private element: ElementRef,
+    private render: Renderer2
+  ) { }
 
   @HostListener('mouseover')
   dimOn(): void {
-    console.log('dimOn')
+    this.render.setStyle(this.element.nativeElement, 'filter', `brightness(${this.brightness})`)
   }
 
   @HostListener('mouseleave')
   dimOff(): void {
-    console.log('dimOff')
+    this.render.setStyle(this.element.nativeElement, 'filter', 'brightness(100%)')
   }
 
 }
