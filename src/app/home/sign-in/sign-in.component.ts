@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../../core/auth/auth.service'
 import { Router } from '@angular/router'
+import { PlatformDetectorService } from '../../core/platform-detector/platform-detector.service'
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +17,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authentication: AuthService,
-    private router: Router
+    private router: Router,
+    private platformDetectorService: PlatformDetectorService
   ) {
     this.loginForm = new FormGroup({
       userName: new FormControl(''),
@@ -49,7 +51,7 @@ export class SignInComponent implements OnInit {
           error: (error) => {
             console.log(error)
             this.loginForm.reset()
-            this.userNameInput?.nativeElement.focus()
+            if(this.platformDetectorService) this.userNameInput?.nativeElement.focus()
           }
         }
       )
