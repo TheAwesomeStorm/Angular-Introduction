@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../../core/auth.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +14,8 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authentication: AuthService
+    private authentication: AuthService,
+    private router: Router
   ) {
     this.loginForm = new FormGroup({
       userName: new FormControl(''),
@@ -42,7 +44,7 @@ export class SignInComponent implements OnInit {
       .authenticate(userName, password)
       .subscribe(
         {
-          next: () => console.log('autenticado'),
+          next: () => this.router.navigateByUrl('user/' + userName),
           error: (error) => {
             console.log(error)
             this.loginForm.reset()
