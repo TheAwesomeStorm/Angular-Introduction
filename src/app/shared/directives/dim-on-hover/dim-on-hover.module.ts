@@ -8,6 +8,9 @@ import { DimOnHoverDirective } from './dim-on-hover.directive';
   declarations: [
     DimOnHoverDirective
   ],
+  exports: [
+    DimOnHoverDirective
+  ],
   imports: [
     CommonModule
   ]

@@ -1,10 +1,20 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, HostListener } from '@angular/core'
 
 @Directive({
   selector: '[appDimOnHover]'
 })
 export class DimOnHoverDirective {
 
-  constructor() { }
+  constructor(private element: ElementRef) { }
+
+  @HostListener('mouseover')
+  dimOn(): void {
+    console.log('dimOn')
+  }
+
+  @HostListener('mouseleave')
+  dimOff(): void {
+    console.log('dimOff')
+  }
 
 }

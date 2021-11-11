@@ -7,13 +7,14 @@ import { FilterByDescriptionPipe } from './filter-by-description.pipe'
 import { PhotoModule } from '../photo/photo.module'
 import { CardModule } from '../../shared/components/card/card.module';
 import { SearchComponent } from './search/search.component'
+import { DimOnHoverModule } from '../../shared/directives/dim-on-hover/dim-on-hover.module'
 
 
 
 @NgModule({
   declarations: [ PhotoListComponent, PhotosComponent, LoadButtonComponent, FilterByDescriptionPipe, SearchComponent ],
   imports: [
-    CommonModule, PhotoModule, CardModule
+    CommonModule, PhotoModule, CardModule, DimOnHoverModule
   ]
 })
 export class PhotoListModule { }
