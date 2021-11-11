@@ -57,3 +57,7 @@ export class SignInComponent implements OnInit {
       )
   }
 }
+
+//constructor => + private render: Renderer2
+//this.userNameInput?.nativeElement.focus => this.render.selectRootElement('#idName').focus()
+//add id='idName' to HTML tag
