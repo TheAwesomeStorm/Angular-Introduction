@@ -34,4 +34,18 @@ export class SignInComponent implements OnInit {
     if (nameHasError) { return nameHasError} else { return false }
   }
 
+  login() {
+    const userName = this.loginForm.get('userName')?.value as string
+    const password = this.loginForm.get('password')?.value as string
+
+    this.authentication
+      .authenticate(userName, password)
+      .subscribe(
+        () => console.log('autenticado'),
+        error => {
+          console.log(error)
+          this.loginForm.reset()
+        }
+      )
+  }
 }
