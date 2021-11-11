@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../../core/auth.service'
 import { Router } from '@angular/router'
@@ -11,6 +11,7 @@ import { Router } from '@angular/router'
 export class SignInComponent implements OnInit {
 
   loginForm: FormGroup
+  @ViewChild('userNameInput', {static: false}) userNameInput: ElementRef<HTMLInputElement> | undefined
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +49,7 @@ export class SignInComponent implements OnInit {
           error: (error) => {
             console.log(error)
             this.loginForm.reset()
+            this.userNameInput?.nativeElement.focus()
           }
         }
       )
