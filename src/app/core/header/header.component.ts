@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   user: User | undefined
 
   constructor(private userService: UserService) {
+    console.log('t3este')
     this.user$ = userService.getUser()
     this.user$.subscribe(user => this.user = user)
   }

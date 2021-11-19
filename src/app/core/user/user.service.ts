@@ -18,6 +18,7 @@ export class UserService {
 
   setToken(token: string) {
     this.tokenService.setToken(token)
+    this.decodeAndNotify()
   }
 
   private decodeAndNotify() {
