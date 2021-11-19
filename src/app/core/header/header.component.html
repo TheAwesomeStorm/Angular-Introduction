@@ -2,8 +2,11 @@
   <nav class="navbar navbar-light bg-white">
     <a href="" class="navbar-brand">AluraPic</a>
     <div *ngIf="(user$ | async) as user; else login">
-      <i class="fa fa-user-circle"></i>
-      <a class="ms-2" href="">{{user.name}}</a>
+      <a class="me-2" href="">
+        <i class="fa fa-user-circle me-2"></i>
+        {{user.name}}
+      </a>
+      <a (click)="logout()" href="">Logout</a>
     </div>
     <ng-template #login>
       <span class="navbar-text">Please, login!</span>
