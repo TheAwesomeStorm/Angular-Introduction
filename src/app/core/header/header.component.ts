@@ -11,11 +11,9 @@ import { User } from '../user/user'
 export class HeaderComponent implements OnInit {
 
   user$: Observable<User>
-  user: User | undefined
 
   constructor(private userService: UserService) {
     this.user$ = userService.getUser() as Observable<User>
-    this.user$.subscribe(user => this.user = user)
   }
 
   ngOnInit(): void {
