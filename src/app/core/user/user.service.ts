@@ -9,7 +9,7 @@ import jwtDecode from 'jwt-decode'
 })
 export class UserService {
 
-  private userSubject = new BehaviorSubject<User>({id:-1, name:'',email:''})
+  private userSubject = new BehaviorSubject<User | null>(null)
 
   constructor(private tokenService: TokenService) {
     this.tokenService.hasToken() &&
@@ -28,7 +28,7 @@ export class UserService {
     this.userSubject.asObservable().subscribe(user => console.log(user))
   }
 
-  getUser(): Observable<User> {
-    return this.userSubject.asObservable()
+  getUser(): Observable<User | null> {
+      return this.userSubject.asObservable()
   }
 }
