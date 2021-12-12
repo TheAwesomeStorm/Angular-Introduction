@@ -76,7 +76,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.signUpService
       .signUp(newUser)
       .subscribe(
-        () => this.router.navigate([''])
+        {
+          next : () => this.router.navigate(['']),
+          error: (error) => console.log(error)
+        }
       )
   }
 
