@@ -1,3 +1,4 @@
+import { lowerCaseValidator } from '../../shared/validators/lower-case.validator'
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
@@ -29,7 +30,7 @@ export class SignupComponent implements OnInit {
       userName: ['',
         [
           Validators.required,
-          Validators.pattern(/^[a-z]+[0-9]*$/),
+          lowerCaseValidator,
           Validators.minLength(2),
           Validators.maxLength(30)
         ]],

@@ -38,7 +38,7 @@
       message='User name is too long, maximum length is 30' >
     </app-message>
     <app-message
-      *ngIf='Validate("userName","pattern")'
+      *ngIf='Validate("userName","lowerCase")'
       message='User name should start with a lowercase letter' >
     </app-message>
   </div>
