@@ -4,10 +4,6 @@ import { PhotoListComponent } from './photos/photo-list/photo-list.component'
 import { PhotoFormComponent } from './photos/photo-form/photo-form.component'
 import { NotFoundComponent } from './errors/not-found/not-found.component'
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolver'
-import { SignInComponent } from './home/sign-in/sign-in.component'
-import { AuthGuard } from './core/auth/auth.guard'
-import { SignupComponent } from './home/signup/signup.component'
-import { HomeComponent } from './home/home.component'
 
 const routes: Routes = [
   {
@@ -15,10 +11,10 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'home'
   },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
-      { path: '', component: SignInComponent },
-      { path: 'signup', component: SignupComponent }
-    ] },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(app => app.HomeModule)
+  },
   { path: 'user/:userName', component: PhotoListComponent, resolve: {photos: PhotoListResolver} },
   { path: 'p/add', component: PhotoFormComponent },
   { path: '**', component: NotFoundComponent}

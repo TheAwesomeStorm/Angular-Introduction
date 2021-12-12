@@ -6,6 +6,7 @@ import { MessageModule } from '../shared/components/message/message.module'
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home.component'
+import { HomeRoutingModule } from './home.routing.module'
 
 
 
@@ -20,7 +21,8 @@ import { HomeComponent } from './home.component'
     FormsModule,
     ReactiveFormsModule,
     MessageModule,
-    RouterModule
+    RouterModule,
+    HomeRoutingModule
   ]
 })
 export class HomeModule { }
