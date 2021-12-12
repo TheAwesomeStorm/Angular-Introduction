@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable, ObservableInput } from 'rxjs'
 import { NewUser } from './new-user'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SignupService {
 
   private api_url = 'http://localhost:3000'
