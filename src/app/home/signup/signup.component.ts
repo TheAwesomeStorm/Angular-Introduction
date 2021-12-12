@@ -1,7 +1,10 @@
+import { NewUser } from './new-user'
 import { lowerCaseValidator } from '../../shared/validators/lower-case.validator'
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service'
+import { SignupService } from './signup.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +16,9 @@ export class SignupComponent implements OnInit {
   public signupForm: FormGroup
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
+    private signUpService: SignupService,
     private userNotTakenValidatorService: UserNotTakenValidatorService
   ) {
     this.signupForm = new FormGroup({
@@ -57,6 +62,15 @@ export class SignupComponent implements OnInit {
   public Validate(name: string, errorName: string): boolean {
     const hasError = this.signupForm.get(name)?.hasError(errorName)
     if (hasError) {return hasError} else {return false}
+  }
+
+  public signUp() {
+    const newUser: NewUser = this.signupForm.getRawValue()
+    this.signUpService
+      .signUp(newUser)
+      .subscribe(
+        () => this.router.navigate([''])
+      )
   }
 
 }
