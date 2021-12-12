@@ -10,4 +10,4 @@
     <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block">Login</button>
   </div>
 </form>
-<p class="text-center mt-2">Not a user?<a class="ms-2" href="#">Register now</a></p>
+<p class="text-center mt-2">Not a user?<a [routerLink]='["signup"]' class="ms-2" href="#">Register now</a></p>
