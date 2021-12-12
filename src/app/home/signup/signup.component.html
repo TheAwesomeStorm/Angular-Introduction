@@ -2,7 +2,7 @@
 
 <form [formGroup]='signupForm' class="form mt-4" (submit)='signUp()'>
   <div class="form-group gap-2 mb-3 d-grid col-6 mx-auto">
-    <input formControlName='email'  placeholder="email" class="form-control" autofocus >
+    <input #emailInput formControlName='email'  placeholder="email" class="form-control" autofocus >
     <app-message *ngIf='Validate("email","required")' message='E-mail is required' ></app-message>
     <app-message *ngIf='Validate("email","email")' message='Invalid e-mail' ></app-message>
   </div>
