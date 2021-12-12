@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
       userName: ['',
         [
           Validators.required,
-          Validators.pattern(/^[a-z0-9_\-]+$/),
+          Validators.pattern(/^[a-z]+[0-9]*$/),
           Validators.minLength(2),
           Validators.maxLength(30)
         ]],
@@ -45,6 +45,11 @@ export class SignupComponent implements OnInit {
         Validators.maxLength(14)
       ]]
     })
+  }
+
+  public Validate(name: string, errorName: string): boolean {
+    const hasError = this.signupForm.get(name)?.hasError(errorName)
+    if (hasError) {return hasError} else {return false}
   }
 
 }

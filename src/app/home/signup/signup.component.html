@@ -3,18 +3,60 @@
 <form [formGroup]='signupForm' class="form mt-4">
   <div class="form-group">
     <input formControlName='email'  placeholder="email" class="form-control" autofocus >
+    <app-message *ngIf='Validate("email","required")' message='E-mail is required' ></app-message>
+    <app-message *ngIf='Validate("email","email")' message='Invalid e-mail' ></app-message>
   </div>
 
   <div class="form-group">
     <input formControlName='fullName' placeholder="full name" class="form-control">
+    <app-message
+      *ngIf='Validate("fullName","required")'
+      message='Full name is required' >
+    </app-message>
+    <app-message
+      *ngIf='Validate("fullName","minlength")'
+      message='Full name is too short, minimum length is 2' >
+    </app-message>
+    <app-message
+      *ngIf='Validate("fullName","maxlength")'
+      message='Full name is too long, maximum length is 40' >
+    </app-message>
   </div>
 
   <div class="form-group">
     <input formControlName='userName' placeholder="user name" class="form-control">
+    <app-message
+      *ngIf='Validate("userName","required")'
+      message='User name is required' >
+    </app-message>
+    <app-message
+      *ngIf='Validate("userName","minlength")'
+      message='User name is too short, minimum length is 2' >
+    </app-message>
+    <app-message
+      *ngIf='Validate("userName","maxlength")'
+      message='User name is too long, maximum length is 30' >
+    </app-message>
+    <app-message
+      *ngIf='Validate("userName","pattern")'
+      message='User name should start with a lowercase letter' >
+    </app-message>
   </div>
 
   <div class="form-group">
     <input formControlName='password' type="password" placeholder="password" class="form-control">
+    <app-message
+      *ngIf='Validate("password","required")'
+      message='Password is required' >
+    </app-message>
+    <app-message
+      *ngIf='Validate("password","minlength")'
+      message='Password is too short, minimum length is 8' >
+    </app-message>
+    <app-message
+      *ngIf='Validate("password","maxlength")'
+      message='Password is too long, maximum length is 14' >
+    </app-message>
   </div>
 
   <button class="btn btn-primary btn-block">Register</button>
