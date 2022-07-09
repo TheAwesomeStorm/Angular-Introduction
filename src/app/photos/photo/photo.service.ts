@@ -24,4 +24,8 @@ export class PhotoService {
     formData.append('imageFile', submit.file as File);
     return this.http.post(`http://localhost:3000/photos/upload`, formData)
   }
+
+  GetById(id: string) {
+    return this.http.get<Photo>(`http://localhost:3000/photos/` + id);
+  }
 }

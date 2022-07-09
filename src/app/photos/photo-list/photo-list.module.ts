@@ -8,13 +8,14 @@ import { PhotoModule } from '../photo/photo.module'
 import { CardModule } from '../../shared/components/card/card.module';
 import { SearchComponent } from './search/search.component'
 import { DimOnHoverModule } from '../../shared/directives/dim-on-hover/dim-on-hover.module'
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [ PhotoListComponent, PhotosComponent, LoadButtonComponent, FilterByDescriptionPipe, SearchComponent ],
   imports: [
-    CommonModule, PhotoModule, CardModule, DimOnHoverModule
+    CommonModule, PhotoModule, CardModule, DimOnHoverModule, RouterModule
   ]
 })
 export class PhotoListModule { }
