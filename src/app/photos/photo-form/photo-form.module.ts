@@ -5,10 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from '../../shared/components/message/message.module';
 import { RouterModule } from '@angular/router';
 import { PhotoModule } from '../photo/photo.module';
+import { AutoClickModule } from '../../shared/directives/auto-click/auto-click.module';
 
 @NgModule({
   declarations: [PhotoFormComponent],
   imports: [
+    AutoClickModule,
     CommonModule,
     ReactiveFormsModule,
     MessageModule,
