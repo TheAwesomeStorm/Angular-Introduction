@@ -1,1 +1,26 @@
-<p>photo-form works!</p>
+<div class="container">
+  <form [formGroup]="photoForm" class="row">
+    <div class="col-md-6 text-center">
+      <input type="file" accept="image/*" formControlName="file">
+      <app-message message="Please, select a photo" *ngIf="Validate('file', 'required')"></app-message>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <textarea class="form-control form-control-sm" placeholder="photo description" formControlName="description"></textarea>
+        <app-message message="Maximum length is 15 characters" *ngIf='Validate("description", "maxlength")'></app-message>
+      </div>
+      <div class="form-group">
+        <label class="text-muted" for="allow-comments">
+          Allow comments
+          <input type="checkbox" id="allow-comments" formControlName="allowComments">
+        </label>
+      </div>
+      <button [disabled]="photoForm.invalid" class="btn btn-primary btn-block">
+        Upload
+      </button>
+      <a href="" class="btn btn-secondary btn-block">
+        Cancel
+      </a>
+    </div>
+  </form>
+</div>
