@@ -6,7 +6,7 @@ import { UserService } from '../user/user.service'
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthenticationService {
 
   private apiUrl = 'http://localhost:3000'
 

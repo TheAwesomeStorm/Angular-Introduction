@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { AuthService } from '../../core/auth/auth.service'
+import { AuthenticationService } from '../../core/auth/authentication.service'
 import { Router } from '@angular/router'
 import { PlatformDetectorService } from '../../core/platform-detector/platform-detector.service'
 
@@ -16,7 +16,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authentication: AuthService,
+    private authentication: AuthenticationService,
     private router: Router,
     private platformDetectorService: PlatformDetectorService
   ) {
