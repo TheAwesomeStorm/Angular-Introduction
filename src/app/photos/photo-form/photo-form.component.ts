@@ -15,6 +15,8 @@ export class PhotoFormComponent implements OnInit {
 
   file: File | null | undefined = undefined;
 
+  preview: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
     private photoService: PhotoService,
@@ -51,6 +53,11 @@ export class PhotoFormComponent implements OnInit {
 
   OnUploadFileChange(event: Event) {
     this.file = (event.target as HTMLInputElement)?.files?.item(0);
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.preview = event.target.result;
+    }
+    this.file && reader.readAsDataURL(this.file);
   }
 
 }
