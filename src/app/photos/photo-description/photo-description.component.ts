@@ -29,6 +29,12 @@ export class PhotoDescriptionComponent implements OnInit {
   ngOnInit(): void {
     this.photoId = this.route.snapshot.params['photoId'] as number;
     this.photo$ = this.photoService.GetById(this.photoId)
+    this.photo$.subscribe({
+      error: (error) => {
+        console.log(error);
+        this.router.navigate(['not-found']).then();
+      }
+    });
   }
 
   DeletePhoto() {
