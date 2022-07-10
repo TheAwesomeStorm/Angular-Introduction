@@ -6,16 +6,16 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RequestInterceptor } from './auth/request.interceptor';
 import { FooterComponent } from './footer/footer.component'
 import { AlertModule } from '../shared/components/alert/alert.module';
-
-
+import { LoadingBarModule } from '../shared/components/loading-bar/loading-bar.module';
 
 @NgModule({
   declarations: [ HeaderComponent, FooterComponent ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    AlertModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        AlertModule,
+        LoadingBarModule
+    ],
   exports: [ HeaderComponent, FooterComponent ],
   providers: [
     {
