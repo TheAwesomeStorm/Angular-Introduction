@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PhotoService } from '../photo/photo.service';
 import { Photo } from '../photo/photo';
 import { Observable } from 'rxjs';
+import { AlertService } from '../../shared/components/alert/alert.service';
+import { AlertType } from '../../shared/components/alert/alert';
 
 @Component({
   selector: 'app-photo-description',
@@ -15,7 +17,12 @@ export class PhotoDescriptionComponent implements OnInit {
 
   photoId: number | undefined;
 
-  constructor(private route: ActivatedRoute, private photoService: PhotoService, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private photoService: PhotoService,
+    private router: Router,
+    private alertService: AlertService
+  ) { }
 
   ngOnInit(): void {
     this.photoId = this.route.snapshot.params['photoId'] as number;
@@ -24,8 +31,17 @@ export class PhotoDescriptionComponent implements OnInit {
 
   DeletePhoto() {
     this.photoService.DeletePhoto(this.photoId as number)
-      .subscribe(() => {
-        this.router.navigate(['']).then();
-      });
+      .subscribe(
+        {
+          next: () => {
+            this.alertService.Alert(AlertType.success, "Photo removed.");
+            this.router.navigate(['']).then();
+          },
+          error: (error) => {
+            console.log(error);
+            this.alertService.Alert(AlertType.warning, "Photo could not be removed.");
+          }
+        }
+      );
   }
 }
