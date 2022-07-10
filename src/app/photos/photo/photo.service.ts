@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core'
 import { Photo } from './photo'
 import { Observable } from 'rxjs'
 import { AddPhotoSubmit } from '../photo-form/add-photo-submit';
+import { PhotoComment } from './photo-comment';
 
 @Injectable({providedIn: 'root'})
 export class PhotoService {
@@ -25,7 +26,15 @@ export class PhotoService {
     return this.http.post(`http://localhost:3000/photos/upload`, formData)
   }
 
-  GetById(id: string) {
+  GetById(id: number) {
     return this.http.get<Photo>(`http://localhost:3000/photos/` + id);
+  }
+
+  GetComments(photoId: number) {
+    return this.http.get<PhotoComment[]>(`http://localhost:3000/photos/` + photoId + '/comments');
+  }
+
+  CreateComment(photoId: number, commentText: string) {
+    return this.http.post('http://localhost:3000/photos/' + photoId + '/comments', { commentText: commentText })
   }
 }
