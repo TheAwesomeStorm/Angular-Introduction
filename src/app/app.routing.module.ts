@@ -17,10 +17,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then(app => app.HomeModule)
   },
-  { path: 'user/:userName', component: PhotoListComponent, resolve: {photos: PhotoListResolver} },
-  { path: 'p/add', component: PhotoFormComponent, canActivate: [RequiresLoginGuard] },
-  { path: 'p/:photoId', component: PhotoDescriptionComponent },
-  { path: 'not-found', component: NotFoundComponent },
+  { path: 'user/:userName', component: PhotoListComponent, resolve: {photos: PhotoListResolver}, data: { title: 'Timeline' } },
+  { path: 'p/add', component: PhotoFormComponent, canActivate: [RequiresLoginGuard], data: { title: 'Photo upload' } },
+  { path: 'p/:photoId', component: PhotoDescriptionComponent, data: { title: 'Photo description' } },
+  { path: 'not-found', component: NotFoundComponent, data: { title: '404 Not found' } },
   { path: '**', redirectTo: 'not-found' }
 ]
 

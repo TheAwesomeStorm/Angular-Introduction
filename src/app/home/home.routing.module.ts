@@ -7,8 +7,8 @@ import { RedirectIfLoggedGuard } from '../core/auth/redirect-if-logged.guard'
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [RedirectIfLoggedGuard], children: [
-      { path: '', component: SignInComponent },
-      { path: 'signup', component: SignupComponent }
+      { path: '', component: SignInComponent, data: { title: 'Sign in' } },
+      { path: 'signup', component: SignupComponent, data: { title: 'Sign up' } }
     ] }
 ]
 
