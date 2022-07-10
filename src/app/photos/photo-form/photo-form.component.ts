@@ -3,6 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AddPhotoSubmit } from './add-photo-submit';
 import { PhotoService } from '../photo/photo.service';
 import { Router } from '@angular/router';
+import { AlertService } from '../../shared/components/alert/alert.service';
+import { AlertType } from '../../shared/components/alert/alert';
+import { UserService } from '../../core/user/user.service';
 
 @Component({
   selector: 'app-photo-form',
@@ -20,7 +23,9 @@ export class PhotoFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private photoService: PhotoService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService,
+    private userService: UserService
   ) {
     this.photoForm = new FormGroup({
       file: new FormControl(''),
@@ -48,7 +53,10 @@ export class PhotoFormComponent implements OnInit {
       description: this.photoForm.get('description')?.value,
       allowComments: this.photoForm.get('allowComments')?.value
     }
-    this.photoService.UploadPhoto(submitResult).subscribe(() => this.router.navigate(['']));
+    this.photoService.UploadPhoto(submitResult).subscribe(() => {
+      this.alertService.Alert(AlertType.success, "Upload completed.", true)
+      this.router.navigate(['/user', this.userService.getUserName()]).then();
+    });
   }
 
   OnUploadFileChange(event: Event) {
