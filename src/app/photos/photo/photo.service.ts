@@ -37,4 +37,8 @@ export class PhotoService {
   CreateComment(photoId: number, commentText: string) {
     return this.http.post('http://localhost:3000/photos/' + photoId + '/comments', { commentText: commentText })
   }
+
+  DeletePhoto(photoId: number) {
+    return this.http.delete('http://localhost:3000/photos/' + photoId);
+  }
 }
