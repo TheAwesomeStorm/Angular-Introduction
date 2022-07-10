@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AlertService } from '../../shared/components/alert/alert.service';
 import { AlertType } from '../../shared/components/alert/alert';
 import { UserService } from '../../core/user/user.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-photo-form',
@@ -19,6 +21,8 @@ export class PhotoFormComponent implements OnInit {
   file: File | null | undefined = undefined;
 
   preview: string = '';
+
+  uploadProgress = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -53,10 +57,23 @@ export class PhotoFormComponent implements OnInit {
       description: this.photoForm.get('description')?.value,
       allowComments: this.photoForm.get('allowComments')?.value
     }
-    this.photoService.UploadPhoto(submitResult).subscribe(() => {
-      this.alertService.Alert(AlertType.success, "Upload completed.", true)
-      this.router.navigate(['/user', this.userService.getUserName()]).then();
-    });
+    this.photoService.UploadPhoto(submitResult)
+      .pipe(finalize(() => {
+        this.router.navigate(['/user', this.userService.getUserName()]).then();
+      }))
+      .subscribe({
+        next: (event) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.uploadProgress = Math.round(100 * event.loaded / (event.total as number));
+          } else if ( event instanceof HttpResponse ) {
+            this.alertService.Alert(AlertType.success, "Upload completed.", true)
+          }
+        },
+        error: (err) => {
+          console.log(err);
+          this.alertService.Alert(AlertType.danger, 'Upload error', true);
+        }
+      });
   }
 
   OnUploadFileChange(event: Event) {

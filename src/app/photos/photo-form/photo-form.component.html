@@ -25,12 +25,19 @@
           <input type="checkbox" id="allow-comments" formControlName="allowComments">
         </label>
       </div>
-      <button [disabled]="photoForm.invalid" class="btn btn-primary btn-block">
-        Upload
-      </button>
-      <a href="" class="btn btn-secondary btn-block">
-        Cancel
-      </a>
+      <div *ngIf="!uploadProgress; else uploadProgressTemplate">
+        <button [disabled]="photoForm.invalid" class="btn btn-primary btn-block">
+          Upload
+        </button>
+        <a class="btn btn-secondary btn-block" [routerLink]="['']">
+          Cancel
+        </a>
+      </div>
+      <ng-template #uploadProgressTemplate>
+        <div class="text-center display-4">
+          Uploading {{ uploadProgress }}%
+        </div>
+      </ng-template>
     </div>
   </form>
 </div>

@@ -23,7 +23,7 @@ export class PhotoService {
     formData.append('description', submit.description);
     formData.append('allowComments', submit.allowComments ? 'true' : 'false');
     formData.append('imageFile', submit.file as File);
-    return this.http.post(`http://localhost:3000/photos/upload`, formData)
+    return this.http.post(`http://localhost:3000/photos/upload`, formData, { observe: 'events', reportProgress: true })
   }
 
   GetById(id: number) {
