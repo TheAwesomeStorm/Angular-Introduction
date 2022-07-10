@@ -7,6 +7,8 @@ import { RequestInterceptor } from './auth/request.interceptor';
 import { FooterComponent } from './footer/footer.component'
 import { AlertModule } from '../shared/components/alert/alert.module';
 import { LoadingBarModule } from '../shared/components/loading-bar/loading-bar.module';
+import { MenuModule } from '../shared/components/menu/menu.module';
+import { LoggedOnlyModule } from '../shared/directives/logged-only/logged-only.module';
 
 @NgModule({
   declarations: [ HeaderComponent, FooterComponent ],
@@ -14,7 +16,8 @@ import { LoadingBarModule } from '../shared/components/loading-bar/loading-bar.m
         CommonModule,
         RouterModule,
         AlertModule,
-        LoadingBarModule
+        LoadingBarModule,
+        MenuModule
     ],
   exports: [ HeaderComponent, FooterComponent ],
   providers: [

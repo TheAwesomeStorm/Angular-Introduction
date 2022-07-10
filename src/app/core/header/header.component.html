@@ -1,6 +1,16 @@
 <header class="fixed-top">
-  <nav class="navbar navbar-light bg-white">
-    <a href="" class="navbar-brand">AluraPic</a>
+  <nav class="navbar navbar-light bg-white ps-4">
+    <a class="navbar-brand">
+      <i tabindex="0" (keyup.enter)="menu.ToggleDisplay()" class="fa fa-bars me-2" (click)="menu.ToggleDisplay()"></i>
+      Awesome Pictures Project
+    </a>
+    <app-menu #menu>
+      <ul class="list-unstyled">
+        <li>
+          <a [routerLink]="['p', 'add']">Upload</a>
+        </li>
+      </ul>
+    </app-menu>
     <div *ngIf="(user$ | async) as user; else login">
       <a class="me-2">
         <i class="fa fa-user-circle me-2"></i>
