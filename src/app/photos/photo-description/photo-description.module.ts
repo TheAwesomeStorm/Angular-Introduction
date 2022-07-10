@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from '../../shared/components/message/message.module';
 import { PhotoOwnershipDirective } from './directives/photo-ownership.directive';
+import { LoggedOnlyModule } from '../../shared/directives/logged-only/logged-only.module';
 
 
 
@@ -18,7 +19,8 @@ import { PhotoOwnershipDirective } from './directives/photo-ownership.directive'
     PhotoModule,
     RouterModule,
     ReactiveFormsModule,
-    MessageModule
+    MessageModule,
+    LoggedOnlyModule
   ]
 })
 export class PhotoDescriptionModule { }
