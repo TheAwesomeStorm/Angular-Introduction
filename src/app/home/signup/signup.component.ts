@@ -73,6 +73,9 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   public signUp() {
+    if (this.signupForm.invalid || this.signupForm.pending) {
+      return;
+    }
     const newUser: NewUser = this.signupForm.getRawValue()
     this.signUpService
       .signUp(newUser)
