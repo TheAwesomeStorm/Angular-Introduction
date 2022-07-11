@@ -6,6 +6,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component'
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolver'
 import { RequiresLoginGuard } from './core/auth/requires-login.guard';
 import { PhotoDescriptionComponent } from './photos/photo-description/photo-description.component';
+import { GlobalErrorComponent } from './errors/global-error/global-error.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'user/:userName', component: PhotoListComponent, resolve: {photos: PhotoListResolver}, data: { title: 'Timeline' } },
   { path: 'p/add', component: PhotoFormComponent, canActivate: [RequiresLoginGuard], data: { title: 'Photo upload' } },
   { path: 'p/:photoId', component: PhotoDescriptionComponent, data: { title: 'Photo description' } },
+  { path: 'error', component: GlobalErrorComponent, data: { title: 'Error' }},
   { path: 'not-found', component: NotFoundComponent, data: { title: '404 Not found' } },
   { path: '**', redirectTo: 'not-found' }
 ]
