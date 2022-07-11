@@ -15,7 +15,7 @@ export class RequiresLoginGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this.userService.isLogged()) {
-      this.router.navigate(['']).then()
+      this.router.navigate([''], { queryParams: { fromUrl: state.url } }).then()
       return false
     }
     return true

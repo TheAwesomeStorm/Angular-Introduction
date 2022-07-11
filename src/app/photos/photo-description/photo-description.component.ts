@@ -43,7 +43,7 @@ export class PhotoDescriptionComponent implements OnInit {
         {
           next: () => {
             this.alertService.Alert(AlertType.success, "Photo removed.", true);
-            this.router.navigate(['/user', this.userService.getUserName()]).then();
+            this.router.navigate(['/user', this.userService.getUserName()], { replaceUrl: true }).then();
           },
           error: (error) => {
             console.log(error);
