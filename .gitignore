@@ -48,3 +48,4 @@ Thumbs.db
 # API
 
 /api/node_modules
+/log-server/node_modules
