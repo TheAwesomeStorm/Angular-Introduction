@@ -61,6 +61,7 @@
       *ngIf='Validate("password","maxlength") && form.submitted'
       message='Password is too long, maximum length is 14' >
     </app-message>
+    <app-message *ngIf="ValidateCustomError('passwordNotSafe')" message="User and password must be different"></app-message>
   </div>
 
   <button class="btn btn-primary btn-block d-grid gap-2 col-3 mx-auto">Register</button>

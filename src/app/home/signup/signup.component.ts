@@ -6,6 +6,7 @@ import { UserNotTakenValidatorService } from './user-not-taken.validator.service
 import { SignupService } from './signup.service'
 import { Router } from '@angular/router'
 import { PlatformDetectorService } from '../../core/platform-detector/platform-detector.service'
+import { SafePasswordValidator } from './safe-password.validator';
 
 @Component({
   selector: 'app-signup',
@@ -64,7 +65,21 @@ export class SignupComponent implements OnInit, AfterViewInit {
         Validators.minLength(8),
         Validators.maxLength(14)
       ]]
-    })
+    },
+      {
+        validator: SafePasswordValidator
+      })
+  }
+
+  public ValidateCustomError(errorName: string): boolean {
+
+    const errors = this.signupForm.errors;
+
+    if (errors) {
+      return !!errors[errorName];
+    }
+
+    return false;
   }
 
   public Validate(name: string, errorName: string): boolean {
