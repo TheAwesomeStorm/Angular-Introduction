@@ -17,6 +17,7 @@ import { LoggedOnlyModule } from '../shared/directives/logged-only/logged-only.m
         RouterModule,
         AlertModule,
         LoadingBarModule,
+        LoggedOnlyModule,
         MenuModule
     ],
   exports: [ HeaderComponent, FooterComponent ],
